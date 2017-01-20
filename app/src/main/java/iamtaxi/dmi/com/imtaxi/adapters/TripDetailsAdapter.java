@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import iamtaxi.dmi.com.imtaxi.R;
@@ -32,9 +33,9 @@ public class TripDetailsAdapter extends RecyclerView.Adapter<TripDetailsAdapter.
         mOnRecyclerItemClickListener = listener;
     }
 
-    public void setData(List<CabRequest> cabRequestList){
-        cabRequestList.clear();
-        this.cabRequestList = cabRequestList;
+    public void setData(List<CabRequest> cabList) {
+        cabRequestList = new ArrayList<>();
+        cabRequestList.addAll(cabList);
         notifyDataSetChanged();
     }
 
@@ -51,11 +52,13 @@ public class TripDetailsAdapter extends RecyclerView.Adapter<TripDetailsAdapter.
         holder.textStatus.setText(cabRequestList.get(position).getStatus());
         holder.time.setText(cabRequestList.get(position).getTime());
         holder.managerName.setText(cabRequestList.get(position).getManagerEmail());
+        holder.source.setText(cabRequestList.get(position).getSource());
+        holder.dest.setText(cabRequestList.get(position).getDestination());
 
-        if(cabRequestList.get(position).equals(AppConstants.PENDING_STATUS)){
+        if (cabRequestList.get(position).equals(AppConstants.PENDING_STATUS)) {
             holder.textStatus.setBackgroundColor(Color.GREEN);
 
-        }else if(cabRequestList.get(position).equals(AppConstants.COMPLETE_STATUS)){
+        } else if (cabRequestList.get(position).equals(AppConstants.COMPLETE_STATUS)) {
             holder.textStatus.setBackgroundColor(Color.RED);
         }
 
@@ -75,12 +78,18 @@ public class TripDetailsAdapter extends RecyclerView.Adapter<TripDetailsAdapter.
 
     @Override
     public int getItemCount() {
-        return cabRequestList.size();
+        if (cabRequestList == null || cabRequestList.size() == 0) {
+            return 0;
+        } else {
+            return cabRequestList.size();
+        }
     }
 
     public static class TripDetailsViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textStatus,managerName,time;
+        private final TextView dest;
+        private final TextView source;
+        public TextView textStatus, managerName, time;
         public View mStatusLine;
 
         public TripDetailsViewHolder(View itemView, final OnRecyclerItemClickListener listener) {
@@ -88,6 +97,8 @@ public class TripDetailsAdapter extends RecyclerView.Adapter<TripDetailsAdapter.
             mStatusLine = itemView.findViewById(R.id.line_view);
             textStatus = (TextView) itemView.findViewById(R.id.text_status);
             managerName = (TextView) itemView.findViewById(R.id.manager_name);
+            source = (TextView) itemView.findViewById(R.id.source);
+            dest = (TextView) itemView.findViewById(R.id.source);
             time = (TextView) itemView.findViewById(R.id.time);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -42,6 +42,8 @@ public class TripDetailsActivity extends BaseActivity implements OnRecyclerItemC
     private ImTaxtPrefs mPref;
     private List<CabRequest> cabRequestList;
 
+    public static ArrayList<CabRequest> cabRequests;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,13 +125,17 @@ public class TripDetailsActivity extends BaseActivity implements OnRecyclerItemC
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CREATE_NEW_REQUEST && data != null) {
-            ArrayList<CabRequest> myList = (ArrayList<CabRequest>) data.getSerializableExtra("mylist");
+            ArrayList<CabRequest> myList = new ArrayList<>();
+            myList.addAll(cabRequests);
             updateUi(myList);
         }
     }
 
     private void updateUi(ArrayList<CabRequest> myList) {
-
+        if (null != mTripDetailsAdapter && myList.size() > 0) {
+            mTripDetailsAdapter.setData(myList);
+            mTripDetailsAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override

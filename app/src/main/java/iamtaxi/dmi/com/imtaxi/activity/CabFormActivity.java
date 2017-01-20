@@ -115,9 +115,8 @@ public class CabFormActivity extends BaseActivity implements View.OnClickListene
             public void onResponse(Call<List<CabRequest>> call, Response<List<CabRequest>> response) {
                 dissmissDialog();
                 try {
-                    ArrayList<CabRequest> cabRequests = (ArrayList<CabRequest>) response.body();
+                    TripDetailsActivity.cabRequests = (ArrayList<CabRequest>) response.body();
                     Intent intent = new Intent();
-                    intent.putExtra("mylist", (Serializable) cabRequests);
                     setResult(2, intent);
                     finish();
                 } catch (Exception e) {
