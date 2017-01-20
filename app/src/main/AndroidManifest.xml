@@ -17,12 +17,8 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".CabFormActivity"
-            android:label="@string/app_name">
-
-        </activity>
-
+        <activity android:name=".CabFormActivity" />
+        <activity android:name=".activity.TripDetailsActivity" />
     </application>
 
 </manifest>

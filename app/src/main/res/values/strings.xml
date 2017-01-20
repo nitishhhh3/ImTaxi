@@ -3,13 +3,13 @@
     <string name="action_settings">Settings</string>
     <string name="text_user_name">Username</string>
     <string name="text_password">Password</string>
-    <string name="text_login">LOGIN</string>
     <string name="text_cab_request">Cab Request Form</string>
     <string name="text_employee">Employee</string>
     <string name="text_manager">Manager</string>
     <string name="text_manager_name">Manager Name</string>
     <string name="text_cab_required">Time Cab Required</string>
     <string name="text_guard">Guard</string>
+
     <string name="text_name">Employee Name</string>
     <string name="text_contact">Employee Contact</string>
     <string name="text_id">Employee ID</string>
@@ -17,4 +17,11 @@
     <string name="text_purpose_travel">Purpose of Travel</string>
     <string name="text_destination">Destination</string>
     <string name="text_submit">Submit</string>
+
+    <string name="text_login">Login</string>
+    <string name="text_trip_details">Trip Details</string>
+    <string name="text_approved_by">Approved by</string>
+    <string name="text_Date">Date</string>
+
+>>>>>>> Trip details Ui implemented
 </resources>

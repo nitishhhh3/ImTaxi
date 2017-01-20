@@ -1,6 +1,5 @@
 package iamtaxi.dmi.com.imtaxi.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -8,7 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
-import iamtaxi.dmi.com.imtaxi.CabFormActivity;
 import iamtaxi.dmi.com.imtaxi.R;
 
 /**
@@ -22,6 +20,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private EditText mEditUserName, mEditPassword;
     private RadioButton mRadioEmp, mRadioManager, mRadioGuard;
     private Button loginBtn;
+
+    private Button mLoginButton;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,9 +41,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         mRadioGuard = (RadioButton) findViewById(R.id.radio_guard);
         mRadioEmp = (RadioButton) findViewById(R.id.radio_employee);
         mRadioManager = (RadioButton) findViewById(R.id.radio_manager);
-        loginBtn = (Button) findViewById(R.id.btn_login);
-        loginBtn.setOnClickListener(this);
-
+        mLoginButton = (Button) findViewById(R.id.btn_login);
+        mLoginButton.setOnClickListener(this);
     }
 
     @Override
@@ -51,8 +51,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         switch (v.getId()) {
 
             case R.id.btn_login:
-                startActivity(new Intent(this, CabFormActivity.class));
-
+                switchActivity(TripDetailsActivity.class, null);
                 break;
         }
     }
