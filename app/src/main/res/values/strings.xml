@@ -25,4 +25,12 @@
     <string name="text_Date">Date</string>
     <string name="text_requested_by">Requested by</string>
 
+    <string name="text_car_name">CarModel</string>
+    <string name="text_car_num">CarNumber</string>
+    <string name="text_driver_name">Driver Name</string>
+    <string name="text_time">Time</string>
+    <string name="text_car_details">car Details</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="text_ok">Ok</string>
+
 </resources>
