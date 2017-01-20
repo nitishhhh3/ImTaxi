@@ -2,6 +2,5 @@
 
     <style name="AppBaseTheme" parent="ImTaxiTheme">
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="windowTranslucentStatus">true</item>
     </style>
 </resources>

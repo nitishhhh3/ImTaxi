@@ -1,4 +1,4 @@
-package iamtaxi.dmi.com.imtaxi;
+package iamtaxi.dmi.com.imtaxi.activity;
 
 import android.util.Log;
 
