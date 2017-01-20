@@ -1,11 +1,14 @@
 package iamtaxi.dmi.com.imtaxi.utill;
 
 /**
- * Created by dmi on 1/20/2017.
+ * Created by Ankit on 1/20/2017.
+ *
+ * @author Ankit Jindal
  */
 
-public class AppConstants {
-    public static final String GUARD_TYPE = "guard_type";
-    public static final String EMP_TYPE = "guard_type";
-    public static final String MNGR_TYPE = "guard_type";
+public interface AppConstants {
+    String GUARD_TYPE = "Guard_type";
+    String EMP_TYPE = "Emp_type";
+    String MANAGER_TYPE = "Manager_type";
+    String KEY_BUNDLE = "Bundle";
 }

@@ -41,14 +41,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         setUpToolbar(getString(R.string.text_login), false);
         mPref = ImTaxtPrefs.getInstance(this);
         if (mPref.isLoggedIn()) {
-            String userType = mPref.getUserType();
-            if (userType.equals(AppConstants.EMP_TYPE)) {
-                startActivity(new Intent(this, TripDetailsActivity.class));
-            } else if (userType.equals(AppConstants.GUARD_TYPE)) {
-                startActivity(new Intent(this, TripDetailsActivity.class));
-            } else if (userType.equals(AppConstants.MNGR_TYPE)) {
-                startActivity(new Intent(this, TripDetailsActivity.class));
-            }
+            startActivity(new Intent(this, TripDetailsActivity.class));
             finish();
         } else {
             initViews();
@@ -117,7 +110,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 loginType = AppConstants.EMP_TYPE;
                 break;
             case R.id.radio_manager:
-                loginType = AppConstants.MNGR_TYPE;
+                loginType = AppConstants.MANAGER_TYPE;
                 break;
             default:
                 loginType = AppConstants.GUARD_TYPE;

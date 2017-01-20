@@ -18,6 +18,8 @@
     <string name="text_purpose_travel">Purpose of Travel</string>
     <string name="text_destination">Destination</string>
     <string name="text_submit">Submit</string>
+    <string name="text_complete">Completed</string>
+    <string name="text_pending">Pending</string>
 
     <string name="text_login">Login</string>
     <string name="text_trip_details">Trip Details</string>
@@ -29,8 +31,13 @@
     <string name="text_car_num">CarNumber</string>
     <string name="text_driver_name">Driver Name</string>
     <string name="text_time">Time</string>
-    <string name="text_car_details">car Details</string>
+    <string name="text_car_details">Car Details</string>
+    <string name="text_approve">Approve</string>
+    <string name="text_reject">Reject</string>
+
     <string name="text_cancel">Cancel</string>
     <string name="text_ok">Ok</string>
+    <string name="text_are_u_sure">Are you Sure?</string>
+    <string name="text_approve_request">You are about to approve this request.</string>
 
 </resources>

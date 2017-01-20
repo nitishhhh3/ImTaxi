@@ -12,6 +12,7 @@ import android.view.View;
 
 import iamtaxi.dmi.com.imtaxi.R;
 import iamtaxi.dmi.com.imtaxi.adapters.TripDetailsAdapter;
+import iamtaxi.dmi.com.imtaxi.listeners.OnRecyclerItemClickListener;
 import iamtaxi.dmi.com.imtaxi.utill.ImTaxtPrefs;
 
 /**
@@ -20,11 +21,10 @@ import iamtaxi.dmi.com.imtaxi.utill.ImTaxtPrefs;
  * @author Ankit Jindal
  */
 
-public class TripDetailsActivity extends BaseActivity {
+public class TripDetailsActivity extends BaseActivity implements OnRecyclerItemClickListener {
 
     private RecyclerView mRecyclerView;
     private TripDetailsAdapter mTripDetailsAdapter;
-    private int mUserType = 1;
     private int CREATE_NEW_REQUEST = 1001;
     private ImTaxtPrefs mPref;
 
@@ -40,7 +40,7 @@ public class TripDetailsActivity extends BaseActivity {
      * Method used to initialise views from Xml
      */
     private void initViews() {
-        mTripDetailsAdapter = new TripDetailsAdapter(this);
+        mTripDetailsAdapter = new TripDetailsAdapter(this, this);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_trip_details);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(mTripDetailsAdapter);
@@ -51,6 +51,13 @@ public class TripDetailsActivity extends BaseActivity {
                 startActivityForResult(new Intent(TripDetailsActivity.this, CabFormActivity.class), CREATE_NEW_REQUEST);
             }
         });
+
+        if (ImTaxtPrefs.getInstance(TripDetailsActivity.this).getUserType().equalsIgnoreCase(GUARD_TYPE) ||
+                ImTaxtPrefs.getInstance(TripDetailsActivity.this).getUserType().equalsIgnoreCase(MANAGER_TYPE))
+            findViewById(R.id.fab).setVisibility(View.GONE);
+        else
+            findViewById(R.id.fab).setVisibility(View.VISIBLE);
+
     }
 
     @Override
@@ -93,5 +100,15 @@ public class TripDetailsActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onRecyclerItemClick(int position, View view) {
+
+        if (ImTaxtPrefs.getInstance(TripDetailsActivity.this).getUserType().equalsIgnoreCase(GUARD_TYPE))
+            switchActivity(CarDetailsActivity.class, null);
+        else if (ImTaxtPrefs.getInstance(TripDetailsActivity.this).getUserType().equalsIgnoreCase(MANAGER_TYPE))
+            showAlertDialog(getString(R.string.text_are_u_sure), getString(R.string.text_approve_request),
+                    getString(R.string.text_approve), getString(R.string.text_reject), null, null);
     }
 }

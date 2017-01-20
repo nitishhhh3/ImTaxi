@@ -22,13 +22,14 @@
             android:name=".activity.TripDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activity.CarDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.CabFormActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
 
-        </activity><![CDATA[
-        >>>>>>> login validation for all and save in prefrences
-    ]]>
+        </activity>
     </application>
 
 </manifest>
