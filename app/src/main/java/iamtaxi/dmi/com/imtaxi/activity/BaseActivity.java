@@ -2,6 +2,7 @@ package iamtaxi.dmi.com.imtaxi.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import iamtaxi.dmi.com.imtaxi.utill.AppConstants;
 
 public class BaseActivity extends AppCompatActivity implements AppConstants {
 
+    ProgressDialog progressDialog;
 
     public void setUpToolbar(String title, boolean showBack) {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -35,6 +37,26 @@ public class BaseActivity extends AppCompatActivity implements AppConstants {
             });
         }
         getSupportActionBar().setHomeButtonEnabled(true);
+    }
+
+    public void showDialog(String message) {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(this);
+            if (null == message) {
+                progressDialog.setMessage("Loading...");
+            } else {
+                progressDialog.setMessage(message);
+            }
+        }
+        if (progressDialog != null) {
+            progressDialog.show();
+        }
+    }
+
+    public void dissmissDialog() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
     }
 
     /**

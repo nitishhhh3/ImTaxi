@@ -7,8 +7,8 @@ package iamtaxi.dmi.com.imtaxi.utill;
  */
 
 public interface AppConstants {
-    String GUARD_TYPE = "Guard_type";
-    String EMP_TYPE = "Emp_type";
-    String MANAGER_TYPE = "Manager_type";
     String KEY_BUNDLE = "Bundle";
+    public static final String GUARD_TYPE = "GRD";
+    public static final String EMP_TYPE = "EMP";
+    public static final String MNGR_TYPE = "MGR";
 }

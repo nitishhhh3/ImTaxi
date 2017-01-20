@@ -21,6 +21,7 @@ import android.widget.Toast;
 import iamtaxi.dmi.com.imtaxi.R;
 import iamtaxi.dmi.com.imtaxi.adapters.TripDetailsAdapter;
 import iamtaxi.dmi.com.imtaxi.listeners.OnRecyclerItemClickListener;
+import iamtaxi.dmi.com.imtaxi.utill.AppConstants;
 import iamtaxi.dmi.com.imtaxi.utill.ImTaxtPrefs;
 
 /**
@@ -61,7 +62,7 @@ public class TripDetailsActivity extends BaseActivity implements OnRecyclerItemC
         });
 
         if (ImTaxtPrefs.getInstance(TripDetailsActivity.this).getUserType().equalsIgnoreCase(GUARD_TYPE) ||
-                ImTaxtPrefs.getInstance(TripDetailsActivity.this).getUserType().equalsIgnoreCase(MANAGER_TYPE))
+                ImTaxtPrefs.getInstance(TripDetailsActivity.this).getUserType().equalsIgnoreCase(AppConstants.MNGR_TYPE))
             findViewById(R.id.fab).setVisibility(View.GONE);
         else
             findViewById(R.id.fab).setVisibility(View.VISIBLE);
@@ -86,9 +87,17 @@ public class TripDetailsActivity extends BaseActivity implements OnRecyclerItemC
         if (id == R.id.action_logout) {
             performLogout();
             return true;
+        } else if (id == R.id.action_refresh) {
+
+            performRefresh();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void performRefresh() {
+
     }
 
     @Override
@@ -116,22 +125,19 @@ public class TripDetailsActivity extends BaseActivity implements OnRecyclerItemC
         DialogInterface.OnClickListener positiveOnclickListner = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-            sendSMS("9891333992","Your request has been sent");      
+                sendSMS("9891333992", "Your request has been sent");
             }
         };
 
         if (ImTaxtPrefs.getInstance(TripDetailsActivity.this).getUserType().equalsIgnoreCase(GUARD_TYPE))
             switchActivity(CarDetailsActivity.class, null);
-        else if (ImTaxtPrefs.getInstance(TripDetailsActivity.this).getUserType().equalsIgnoreCase(MANAGER_TYPE))
+        else if (ImTaxtPrefs.getInstance(TripDetailsActivity.this).getUserType().equalsIgnoreCase(AppConstants.MNGR_TYPE))
             showAlertDialog(getString(R.string.text_are_u_sure), getString(R.string.text_approve_request),
                     getString(R.string.text_approve), getString(R.string.text_reject), positiveOnclickListner, null);
     }
 
 
-
-
-    private void sendSMS(String phoneNumber, String message)
-    {
+    private void sendSMS(String phoneNumber, String message) {
         String SENT = "SMS_SENT";
         String DELIVERED = "SMS_DELIVERED";
 
@@ -142,11 +148,10 @@ public class TripDetailsActivity extends BaseActivity implements OnRecyclerItemC
                 new Intent(DELIVERED), 0);
 
         //---when the SMS has been sent---
-        registerReceiver(new BroadcastReceiver(){
+        registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context arg0, Intent arg1) {
-                switch (getResultCode())
-                {
+                switch (getResultCode()) {
                     case Activity.RESULT_OK:
                         Toast.makeText(getBaseContext(), "SMS sent",
                                 Toast.LENGTH_SHORT).show();
@@ -172,11 +177,10 @@ public class TripDetailsActivity extends BaseActivity implements OnRecyclerItemC
         }, new IntentFilter(SENT));
 
         //---when the SMS has been delivered---
-        registerReceiver(new BroadcastReceiver(){
+        registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context arg0, Intent arg1) {
-                switch (getResultCode())
-                {
+                switch (getResultCode()) {
                     case Activity.RESULT_OK:
                         Toast.makeText(getBaseContext(), "SMS delivered",
                                 Toast.LENGTH_SHORT).show();

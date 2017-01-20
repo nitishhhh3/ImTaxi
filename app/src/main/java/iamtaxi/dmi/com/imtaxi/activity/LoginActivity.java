@@ -4,15 +4,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import iamtaxi.dmi.com.imtaxi.R;
+import iamtaxi.dmi.com.imtaxi.model.LoginResponse;
+import iamtaxi.dmi.com.imtaxi.rest.ApiClient;
+import iamtaxi.dmi.com.imtaxi.rest.ApiInterface;
 import iamtaxi.dmi.com.imtaxi.utill.AppConstants;
 import iamtaxi.dmi.com.imtaxi.utill.ImTaxtPrefs;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Ankit on 20-01-2017.
@@ -79,7 +87,29 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void callApi() {
-        launchActivity();
+        ApiInterface apiService = ApiClient.createClient();
+        Call<String> call = apiService.getLoginAuth(userName, userPassword, loginType);
+        showDialog("Please wait...");
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                dissmissDialog();
+                String message = response.body();
+                if (message != null && message.equalsIgnoreCase("Employee")) {
+                    launchActivity();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Wrong username or password", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                dissmissDialog();
+                // Log error here since request failed
+                Toast.makeText(LoginActivity.this, "ERROR::" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void launchActivity() {
@@ -110,7 +140,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 loginType = AppConstants.EMP_TYPE;
                 break;
             case R.id.radio_manager:
-                loginType = AppConstants.MANAGER_TYPE;
+                loginType = AppConstants.MNGR_TYPE;
                 break;
             default:
                 loginType = AppConstants.GUARD_TYPE;
