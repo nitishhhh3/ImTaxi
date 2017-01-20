@@ -18,6 +18,7 @@ public class TripDetailsActivity extends BaseActivity {
 
     private RecyclerView mRecyclerView;
     private TripDetailsAdapter mTripDetailsAdapter;
+    private int mUserType = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,7 +36,6 @@ public class TripDetailsActivity extends BaseActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_trip_details);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(mTripDetailsAdapter);
-
     }
 
 }

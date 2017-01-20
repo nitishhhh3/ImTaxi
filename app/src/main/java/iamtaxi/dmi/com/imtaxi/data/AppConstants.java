@@ -9,4 +9,8 @@ package iamtaxi.dmi.com.imtaxi.data;
 public interface AppConstants {
 
     String KEY_BUNDLE = "Bundle";
+    String KEY_TYPE = "Type";
+    int TYPE_EMPLOYEE = 1;
+    int TYPE_MANAGER = 2;
+    int TYPE_GUARD = 3;
 }

@@ -22,6 +22,6 @@
     <string name="text_trip_details">Trip Details</string>
     <string name="text_approved_by">Approved by</string>
     <string name="text_Date">Date</string>
+    <string name="text_requested_by">Requested by</string>
 
->>>>>>> Trip details Ui implemented
 </resources>

@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".CabFormActivity" />
+        <activity android:name=".activity.CabFormActivity" />
         <activity android:name=".activity.TripDetailsActivity" />
     </application>
 

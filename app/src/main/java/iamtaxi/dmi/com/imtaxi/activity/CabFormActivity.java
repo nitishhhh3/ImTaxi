@@ -1,4 +1,4 @@
-package iamtaxi.dmi.com.imtaxi;
+package iamtaxi.dmi.com.imtaxi.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import iamtaxi.dmi.com.imtaxi.R;
 import iamtaxi.dmi.com.imtaxi.activity.BaseActivity;
 
 /**
