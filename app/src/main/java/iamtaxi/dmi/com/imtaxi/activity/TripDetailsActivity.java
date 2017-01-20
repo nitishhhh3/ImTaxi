@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import iamtaxi.dmi.com.imtaxi.R;
 import iamtaxi.dmi.com.imtaxi.adapters.TripDetailsAdapter;
@@ -121,6 +122,14 @@ public class TripDetailsActivity extends BaseActivity implements OnRecyclerItemC
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CREATE_NEW_REQUEST && data != null) {
+            ArrayList<CabRequest> myList = (ArrayList<CabRequest>) data.getSerializableExtra("mylist");
+            updateUi(myList);
+        }
+    }
+
+    private void updateUi(ArrayList<CabRequest> myList) {
+
     }
 
     @Override
@@ -129,7 +138,7 @@ public class TripDetailsActivity extends BaseActivity implements OnRecyclerItemC
         DialogInterface.OnClickListener positiveOnclickListner = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-            sendSMS("+91 9582461360","Your request has been sent");
+                sendSMS("+91 9582461360", "Your request has been sent");
             }
         };
 
@@ -200,4 +209,5 @@ public class TripDetailsActivity extends BaseActivity implements OnRecyclerItemC
         SmsManager sms = SmsManager.getDefault();
         sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI);
     }
+
 }

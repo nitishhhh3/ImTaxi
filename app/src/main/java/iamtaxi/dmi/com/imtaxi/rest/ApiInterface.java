@@ -14,7 +14,7 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
     @GET("employee/login")
-    Call<String> getLoginAuth(@Query("email") String email, @Query("password") String password, @Query("type") String type);
+    Call<LoginResponse> getLoginAuth(@Query("email") String email, @Query("password") String password, @Query("type") String type);
 
     @POST("employee/request")
     Call<List<CabRequest>> createCabRequest(@Body CabRequest cabRequest);

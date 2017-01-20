@@ -12,6 +12,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import iamtaxi.dmi.com.imtaxi.R;
 import iamtaxi.dmi.com.imtaxi.model.LoginResponse;
 import iamtaxi.dmi.com.imtaxi.rest.ApiClient;
@@ -88,23 +91,29 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private void callApi() {
         ApiInterface apiService = ApiClient.createClient();
-        Call<String> call = apiService.getLoginAuth(userName, userPassword, loginType);
+        Call<LoginResponse> call = apiService.getLoginAuth(userName, userPassword, loginType);
         showDialog("Please wait...");
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 dissmissDialog();
-                String message = response.body();
-                if (message != null && message.equalsIgnoreCase("Employee")) {
-                    launchActivity();
-                } else {
-                    Toast.makeText(LoginActivity.this, "Wrong username or password", Toast.LENGTH_SHORT).show();
+                LoginResponse loginResponse = response.body();
+                try {
+
+                    if (loginResponse != null && loginResponse.getMessage().equalsIgnoreCase("Employee Logged In successfully")) {
+                        launchActivity();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Wrong username or password", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+
 
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
                 dissmissDialog();
                 // Log error here since request failed
                 Toast.makeText(LoginActivity.this, "ERROR::" + t.getMessage(), Toast.LENGTH_SHORT).show();

@@ -1,5 +1,6 @@
 package iamtaxi.dmi.com.imtaxi.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -7,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import iamtaxi.dmi.com.imtaxi.R;
@@ -45,8 +48,9 @@ public class CabFormActivity extends BaseActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cab_form_activity);
         setUpToolbar(getString(R.string.text_cab_request), true);
-        initViews();
+
         mPref = ImTaxtPrefs.getInstance(this);
+        initViews();
     }
 
     /**
@@ -92,6 +96,7 @@ public class CabFormActivity extends BaseActivity implements View.OnClickListene
         time = mTime.getText().toString().trim();
 
         cabRequest.setEmpEmail(empId);
+        cabRequest.setSource("DMI Noida");
         cabRequest.setDestination(destination);
         cabRequest.setEmployeeType(mPref.getUserType());
         cabRequest.setManagerEmail(managerEmail);
@@ -109,11 +114,13 @@ public class CabFormActivity extends BaseActivity implements View.OnClickListene
             @Override
             public void onResponse(Call<List<CabRequest>> call, Response<List<CabRequest>> response) {
                 dissmissDialog();
-                String message = "";
-                List<CabRequest> cabRequests = response.body();
-                if (message != null && message.equalsIgnoreCase("Employee")) {
-
-                } else {
+                try {
+                    ArrayList<CabRequest> cabRequests = (ArrayList<CabRequest>) response.body();
+                    Intent intent = new Intent();
+                    intent.putExtra("mylist", (Serializable) cabRequests);
+                    setResult(2, intent);
+                    finish();
+                } catch (Exception e) {
                     Toast.makeText(CabFormActivity.this, "Error", Toast.LENGTH_SHORT).show();
                 }
 
