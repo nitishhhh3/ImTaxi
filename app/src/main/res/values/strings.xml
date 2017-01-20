@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ImTaxi</string>
     <string name="action_settings">Settings</string>
+    <string name="action_logout">Logout</string>
     <string name="text_user_name">Username</string>
     <string name="text_password">Password</string>
     <string name="text_cab_request">Cab Request Form</string>

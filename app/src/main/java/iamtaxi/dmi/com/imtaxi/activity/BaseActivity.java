@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import iamtaxi.dmi.com.imtaxi.R;
 import iamtaxi.dmi.com.imtaxi.data.AppConstants;
@@ -17,11 +18,19 @@ import iamtaxi.dmi.com.imtaxi.data.AppConstants;
 public class BaseActivity extends AppCompatActivity implements AppConstants {
 
 
-    public void setUpToolbar(String title) {
+    public void setUpToolbar(String title, boolean showBack) {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(title);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (showBack) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onBackPressed();
+                }
+            });
+        }
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 

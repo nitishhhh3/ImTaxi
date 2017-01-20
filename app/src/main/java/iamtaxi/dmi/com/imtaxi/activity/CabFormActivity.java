@@ -16,8 +16,8 @@ import iamtaxi.dmi.com.imtaxi.activity.BaseActivity;
  * Created by sahil kumar on 20/01/2017.
  */
 
-public class CabFormActivity extends BaseActivity implements View.OnClickListener{
-    private EditText mEmployeeName,mEmployeeId,mContact;
+public class CabFormActivity extends BaseActivity implements View.OnClickListener {
+    private EditText mEmployeeName, mEmployeeId, mContact;
     private EditText mPorjectCode;
     private EditText mDestination;
     private Button submitBtn;
@@ -26,7 +26,7 @@ public class CabFormActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cab_form_activity);
-        setUpToolbar(getString(R.string.text_cab_request));
+        setUpToolbar(getString(R.string.text_cab_request), true);
         initViews();
 
     }
