@@ -43,11 +43,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         if (mPref.isLoggedIn()) {
             String userType = mPref.getUserType();
             if (userType.equals(AppConstants.EMP_TYPE)) {
-                startActivity(new Intent(this, EmpDashboardActivity.class));
+                startActivity(new Intent(this, TripDetailsActivity.class));
             } else if (userType.equals(AppConstants.GUARD_TYPE)) {
-                startActivity(new Intent(this, EmpDashboardActivity.class));
+                startActivity(new Intent(this, TripDetailsActivity.class));
             } else if (userType.equals(AppConstants.MNGR_TYPE)) {
-                startActivity(new Intent(this, EmpDashboardActivity.class));
+                startActivity(new Intent(this, TripDetailsActivity.class));
             }
             finish();
         } else {
@@ -91,7 +91,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private void launchActivity() {
         saveUserDetailsInPref();
-        startActivity(new Intent(this, EmpDashboardActivity.class));
+        startActivity(new Intent(this, TripDetailsActivity.class));
         finish();
     }
 
