@@ -18,9 +18,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.List;
+
 import iamtaxi.dmi.com.imtaxi.R;
 import iamtaxi.dmi.com.imtaxi.adapters.TripDetailsAdapter;
 import iamtaxi.dmi.com.imtaxi.listeners.OnRecyclerItemClickListener;
+import iamtaxi.dmi.com.imtaxi.model.CabRequest;
 import iamtaxi.dmi.com.imtaxi.utill.AppConstants;
 import iamtaxi.dmi.com.imtaxi.utill.ImTaxtPrefs;
 
@@ -36,6 +39,7 @@ public class TripDetailsActivity extends BaseActivity implements OnRecyclerItemC
     private TripDetailsAdapter mTripDetailsAdapter;
     private int CREATE_NEW_REQUEST = 1001;
     private ImTaxtPrefs mPref;
+    private List<CabRequest> cabRequestList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

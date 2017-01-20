@@ -71,6 +71,7 @@
                         android:textSize="@dimen/text_size_small_x" />
 
                     <TextView
+                        android:id="@+id/manager_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
@@ -124,7 +125,8 @@
                         android:textSize="@dimen/text_size_small_x" />
 
                     <TextView
-                        android:id="@+id/textView"
+
+                        android:id="@+id/time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
