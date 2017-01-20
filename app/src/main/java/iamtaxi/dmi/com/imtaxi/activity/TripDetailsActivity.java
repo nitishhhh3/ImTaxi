@@ -125,7 +125,7 @@ public class TripDetailsActivity extends BaseActivity implements OnRecyclerItemC
         DialogInterface.OnClickListener positiveOnclickListner = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                sendSMS("9891333992", "Your request has been sent");
+            sendSMS("+91 9582461360","Your request has been sent");
             }
         };
 

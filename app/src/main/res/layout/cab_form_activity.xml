@@ -137,7 +137,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/manager_name"
+                    android:id="@+id/manager_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/text_manager_name"
